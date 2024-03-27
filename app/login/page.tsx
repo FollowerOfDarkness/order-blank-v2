@@ -1,6 +1,1 @@
-import { LoginPage } from "@/pagesLayer/login";
-const SignInPageA = () => {
-  return <LoginPage />;
-};
-
-export default SignInPageA;
+export { LoginPage as default } from "@/pagesLayer/login";
