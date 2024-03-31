@@ -2,6 +2,10 @@ import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 
 export const LoginForm = () => {
+
+	const handlerLogin = e => {
+    e.preventDefault();
+  };
   return (
     <form className="w-[420px] rounded-lg  px-7 py-7 text-white shadow-lg backdrop-blur-xl ">
       <h1 className="text-center text-[36px] ">Login</h1>
