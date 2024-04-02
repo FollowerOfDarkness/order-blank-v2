@@ -5,14 +5,14 @@ export const dealerApi = api.injectEndpoints({
     getOrders: builder.query({
       query: () => "/",
     }),
-    createOrder: builder.mutation({
-      query: orderData => ({
-        body: orderData,
-        url: "/",
+    signin: builder.mutation({
+      query: data => ({
+        body: data,
+        url: "/auth/signin",
         method: "POST",
       }),
     }),
   }),
 });
 
-export const { useCreateOrderMutation, useGetOrdersQuery } = dealerApi;
+export const { useSigninMutation, useGetOrdersQuery } = dealerApi;
