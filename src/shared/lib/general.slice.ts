@@ -17,3 +17,7 @@ export const generalSlice = createSlice({
     },
   },
 });
+
+
+export const { setIsSpinning } = generalSlice.actions;
+export default generalSlice.reducer;

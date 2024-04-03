@@ -1,16 +1,21 @@
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+interface IFormInput {
+  email: string;
+  password: string | number;
+}
 
 export const LoginForm = () => {
+  const { register, handleSubmit } = useForm<IFormInput>();
 
-	const handlerLogin = e => {
-    e.preventDefault();
-  };
   return (
     <form className="w-[420px] rounded-lg  px-7 py-7 text-white shadow-lg backdrop-blur-xl ">
       <h1 className="text-center text-[36px] ">Login</h1>
       <div className="relative my-7 h-12 w-full">
         <input
+          {...register("email", { required: true })}
           className="border-white-200 h-full w-full rounded-full border-2 border-solid bg-transparent 
 		  p-4 px-6 pb-4 pl-4 text-[16px] text-white outline-none placeholder:text-white"
           type="email"
@@ -22,6 +27,7 @@ export const LoginForm = () => {
 
       <div className="relative my-7 h-12 w-full">
         <input
+          {...register("password", { required: true, pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/i })}
           className="border-white-200 h-full w-full rounded-full border-2 border-solid bg-transparent 
 		  p-4 px-6 pb-4 pl-4 text-[16px] text-white outline-none placeholder:text-white"
           type="password"

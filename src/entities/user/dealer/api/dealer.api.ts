@@ -1,4 +1,4 @@
-import { api } from "@/shared/api/api";
+import { api } from "@/shared/api";
 
 export const dealerApi = api.injectEndpoints({
   endpoints: builder => ({
