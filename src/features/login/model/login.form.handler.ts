@@ -1,24 +1,10 @@
-import { useForm, SubmitHandler } from "react-hook-form"
+import { SubmitHandler } from "react-hook-form";
 
-
-interface IFormInput {
-  firstName: string
-  lastName: string
-  age: number
+export interface IFormInput {
+  email: string;
+  password: string | number;
 }
 
-export const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/i
-export default function App() {
-  const { register, handleSubmit } = useForm<IFormInput>()
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
+export const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/i;
 
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("firstName", { required: true, maxLength: 20 })} />
-      <input {...register("lastName", { pattern:  /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/i })} />
-      <input type="number" {...register("age", { min: 18, max: 99 })} />
-      <input type="submit" />
-    </form>
-  )
-}
+export const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
