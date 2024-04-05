@@ -1,5 +1,6 @@
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+import { authenticate } from "../model/login.handler";
 // import { useForm, SubmitHandler } from "react-hook-form";
 // import { IFormInput, onSubmit } from "../model/login.form.handler";
 
@@ -8,11 +9,11 @@ export const LoginForm = () => {
   //   const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
   return (
     <form
-      // action={}
-      onSubmit={e => {
-        e.preventDefault();
-        console.log("login");
-      }}
+      action={authenticate}
+      //   onSubmit={e => {
+      //     e.preventDefault();
+      //     console.log("login");
+      //   }}
       className="w-[420px] rounded-lg  px-7 py-7 text-white shadow-lg backdrop-blur-xl "
     >
       <h1 className="text-center text-[36px] ">Login</h1>
