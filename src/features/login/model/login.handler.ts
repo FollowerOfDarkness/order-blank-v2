@@ -1,5 +1,4 @@
-"use server";
-
+"use client";
 import { useSigninMutation } from "../api/login.api";
 
 // export interface IFormInput {
@@ -10,11 +9,11 @@ import { useSigninMutation } from "../api/login.api";
 // export const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/i;
 
 // export const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
-export async function authenticate(formData: FormData) {
+export function useAuthenticate(formData: any) {
+  const [signIn, { isLoading }] = useSigninMutation();
   try {
-	
-    console.log("login.handler", formData.get("password"));
-    useSigninMutation({password: });
+    console.log("login.handler", formData);
+    // signIn({ email: formData.get("email") as string, password: formData.get("password") as string });
   } catch (error) {
     console.log("login.handler", formData);
     if (error) {

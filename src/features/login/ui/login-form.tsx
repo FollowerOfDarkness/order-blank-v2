@@ -1,25 +1,28 @@
+"use client";
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
-import { authenticate } from "../model/login.handler";
-// import { useForm, SubmitHandler } from "react-hook-form";
+import { useAuthenticate } from "../model/login.handler";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useSigninMutation } from "../api/login.api";
 // import { IFormInput, onSubmit } from "../model/login.form.handler";
 
 export const LoginForm = () => {
-  //   const { register, handleSubmit } = useForm<IFormInput>();
+  const { register, handleSubmit } = useForm();
+  const [signIn, { isLoading }] = useSigninMutation();
   //   const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
+  const onSubmit = (data: any) => {
+    signIn(data); // Вызов функции useauthenticate с данными формы
+  };
   return (
     <form
-      action={authenticate}
-      //   onSubmit={e => {
-      //     e.preventDefault();
-      //     console.log("login");
-      //   }}
+      //   action={useauthenticate}
+      onSubmit={handleSubmit(onSubmit)}
       className="w-[420px] rounded-lg  px-7 py-7 text-white shadow-lg backdrop-blur-xl "
     >
       <h1 className="text-center text-[36px] ">Login</h1>
       <div className="relative my-7 h-12 w-full">
         <input
-          //   {...register("email", { required: true })}
+          {...register("email", { required: true })}
           className="border-white-200 h-full w-full rounded-full border-2 border-solid bg-transparent 
 		  p-4 px-6 pb-4 pl-4 text-[16px] text-white outline-none placeholder:text-white"
           type="email"
@@ -31,7 +34,7 @@ export const LoginForm = () => {
 
       <div className="relative my-7 h-12 w-full">
         <input
-          //   {...register("password", { required: true, pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/i })}
+          {...register("password", { required: true })}
           className="border-white-200 h-full w-full rounded-full border-2 border-solid bg-transparent 
 		  p-4 px-6 pb-4 pl-4 text-[16px] text-white outline-none placeholder:text-white"
           type="password"

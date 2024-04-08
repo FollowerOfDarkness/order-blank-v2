@@ -1,8 +1,12 @@
+import { api } from "@/shared/api";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const makeStore = () => {
   return configureStore({
-    reducer: {},
+    reducer: {
+      [api.reducerPath]: api.reducer,
+    },
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat([api.middleware]),
   });
 };
 
