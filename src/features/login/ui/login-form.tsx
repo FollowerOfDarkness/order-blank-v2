@@ -11,7 +11,9 @@ export const LoginForm = () => {
   const [signIn, { isLoading }] = useSigninMutation();
   //   const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
   const onSubmit = (data: any) => {
-    signIn(data); // Вызов функции useauthenticate с данными формы
+    signIn(data)
+      .unwrap()
+      .then(res => console.log(res)); // Вызов функции useauthenticate с данными формы
   };
   return (
     <form

@@ -8,86 +8,107 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
 });
 
-const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
-  args,
-  api,
-  extraOptions,
-) => {
-  // api.dispatch(setIsSpinning(true));
-  // const role = store.getState().timelineEditorSlice.auth?.role;
-  // console.log("role: ", role);
-  let result = await baseQuery(args, api, extraOptions);
-  console.log("baseQueryWithReauth result: ", result);
-  //   if (!role || (result.error && result.error.status === StatusCodesEnum.unauthorized)) {
-  //     // api.dispatch(setIsRefreshLocked(true))
-  //     if (result?.error?.status === StatusCodesEnum.unauthorized) {
-  //       console.log("remove accessToken >>>");
-  //       localStorage.removeItem("accessToken");
-  //     }
-  //     api.dispatch(setIsSpinning(true));
-  //     // api.dispatch(setAuthIsLoading(true))
-  //     const checkAuth = await baseQuery("auth/local/check", api, extraOptions);
-  //     const checkAuthResult = checkAuth.data as unknown as AuthResponseType;
-  //     console.log("checkAuthResult: ", checkAuthResult);
-  //     if (checkAuthResult?.statusCode === StatusCodesEnum.ok && checkAuthResult?.body) {
-  //       api.dispatch(
-  //         setAuth({
-  //           isLoading: false,
-  //           statusCode: checkAuthResult.statusCode ? checkAuthResult.statusCode : StatusCodesEnum.unauthorized,
-  //           role: checkAuthResult?.body.role,
-  //           worker: checkAuthResult?.body.worker,
-  //         }),
-  //       );
-  //       result = await baseQuery(args, api, extraOptions);
-  //     } else if (!store.getState().timelineEditorSlice.isRefreshLocked) {
-  //       api.dispatch(setIsRefreshLocked(true));
-  //       const refreshTokens = await baseQuery("auth/local/refresh", api, extraOptions);
-  //       const refreshTokensResult = refreshTokens.data as unknown as AuthResponseType;
-  //       console.log("refreshTokensResult result: ", refreshTokensResult);
-  //       if (
-  //         refreshTokensResult?.statusCode === StatusCodesEnum.ok &&
-  //         refreshTokensResult?.body.accessToken &&
-  //         refreshTokensResult?.body.role
-  //       ) {
-  //         api.dispatch(
-  //           setAuth({
-  //             isLoading: false,
-  //             statusCode: refreshTokensResult?.statusCode ? refreshTokensResult.statusCode : StatusCodesEnum.unauthorized,
-  //             role: refreshTokensResult?.body.role,
-  //             worker: refreshTokensResult.body.worker,
-  //           }),
-  //         );
-  //         console.log("set tokens >>>>");
-  //         localStorage.setItem("accessToken", refreshTokensResult?.body.accessToken as string);
-  //         result = await baseQuery(args, api, extraOptions);
-  //       } else {
-  //         api.dispatch(
-  //           setAuth({
-  //             isLoading: false,
-  //             statusCode: StatusCodesEnum.unauthorized,
-  //             role: undefined,
-  //             worker: undefined,
-  //           }),
-  //         );
-  //         console.log("remove tokens >>>>");
-  //         localStorage.removeItem("accessToken");
-  //       }
-  //       api.dispatch(setIsRefreshLocked(false));
-  //     }
-  //   } else if ((result?.data as ServerResponseType).statusCode === StatusCodesEnum.forbidden) {
-  //     api.dispatch(
-  //       setAuth({
-  //         isLoading: false,
-  //         statusCode: StatusCodesEnum.forbidden,
-  //         role,
-  //         worker: undefined,
-  //       }),
-  //     );
-  //   }
-  //   api.dispatch(setIsSpinning(false));
-  return result;
-};
+// const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
+//   args,
+//   api,
+//   extraOptions,
+// ) => {
+//   // api.dispatch(setIsSpinning(true));
+//   // const role = store.getState().timelineEditorSlice.auth?.role;
+//   // console.log("role: ", role);
+//   let result = await baseQuery(args, api, extraOptions);
+//   console.log("baseQueryWithReauth result: ", result);
+//   //   if (!role || (result.error && result.error.status === StatusCodesEnum.unauthorized)) {
+//   //     // api.dispatch(setIsRefreshLocked(true))
+//   //     if (result?.error?.status === StatusCodesEnum.unauthorized) {
+//   //       console.log("remove accessToken >>>");
+//   //       localStorage.removeItem("accessToken");
+//   //     }
+//   //     api.dispatch(setIsSpinning(true));
+//   //     // api.dispatch(setAuthIsLoading(true))
+//   //     const checkAuth = await baseQuery("auth/local/check", api, extraOptions);
+//   //     const checkAuthResult = checkAuth.data as unknown as AuthResponseType;
+//   //     console.log("checkAuthResult: ", checkAuthResult);
+//   //     if (checkAuthResult?.statusCode === StatusCodesEnum.ok && checkAuthResult?.body) {
+//   //       api.dispatch(
+//   //         setAuth({
+//   //           isLoading: false,
+//   //           statusCode: checkAuthResult.statusCode ? checkAuthResult.statusCode : StatusCodesEnum.unauthorized,
+//   //           role: checkAuthResult?.body.role,
+//   //           worker: checkAuthResult?.body.worker,
+//   //         }),
+//   //       );
+//   //       result = await baseQuery(args, api, extraOptions);
+//   //     } else if (!store.getState().timelineEditorSlice.isRefreshLocked) {
+//   //       api.dispatch(setIsRefreshLocked(true));
+//   //       const refreshTokens = await baseQuery("auth/local/refresh", api, extraOptions);
+//   //       const refreshTokensResult = refreshTokens.data as unknown as AuthResponseType;
+//   //       console.log("refreshTokensResult result: ", refreshTokensResult);
+//   //       if (
+//   //         refreshTokensResult?.statusCode === StatusCodesEnum.ok &&
+//   //         refreshTokensResult?.body.accessToken &&
+//   //         refreshTokensResult?.body.role
+//   //       ) {
+//   //         api.dispatch(
+//   //           setAuth({
+//   //             isLoading: false,
+//   //             statusCode: refreshTokensResult?.statusCode ? refreshTokensResult.statusCode : StatusCodesEnum.unauthorized,
+//   //             role: refreshTokensResult?.body.role,
+//   //             worker: refreshTokensResult.body.worker,
+//   //           }),
+//   //         );
+//   //         console.log("set tokens >>>>");
+//   //         localStorage.setItem("accessToken", refreshTokensResult?.body.accessToken as string);
+//   //         result = await baseQuery(args, api, extraOptions);
+//   //       } else {
+//   //         api.dispatch(
+//   //           setAuth({
+//   //             isLoading: false,
+//   //             statusCode: StatusCodesEnum.unauthorized,
+//   //             role: undefined,
+//   //             worker: undefined,
+//   //           }),
+//   //         );
+//   //         console.log("remove tokens >>>>");
+//   //         localStorage.removeItem("accessToken");
+//   //       }
+//   //       api.dispatch(setIsRefreshLocked(false));
+//   //     }
+//   //   } else if ((result?.data as ServerResponseType).statusCode === StatusCodesEnum.forbidden) {
+//   //     api.dispatch(
+//   //       setAuth({
+//   //         isLoading: false,
+//   //         statusCode: StatusCodesEnum.forbidden,
+//   //         role,
+//   //         worker: undefined,
+//   //       }),
+//   //     );
+//   //   }
+//   //   api.dispatch(setIsSpinning(false));
+//   return result;
+// };
+const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (args, api, extraOptions) => {
+    let result = await baseQuery(args, api, extraOptions)
 
+    if (result?.error?.status === 403) {
+        console.log('sending refresh token')
+        // send refresh token to get new access token 
+        const refreshResult = await baseQuery('/refresh', api, extraOptions)
+        console.log(refreshResult)
+        if (refreshResult?.data) {
+            const user = api.getState()
+			console.log(user)
+            // store the new token 
+            // api.dispatch(setCredentials({ ...refreshResult.data, user }))
+            // retry the original query with new access token 
+            result = await baseQuery(args, api, extraOptions)
+        } else {
+            // api.dispatch(logOut())
+        }
+    }
+
+    return result
+}
 export const api = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithReauth,
