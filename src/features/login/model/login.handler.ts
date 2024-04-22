@@ -10,10 +10,10 @@ import { useSigninMutation } from "../api/login.api";
 
 // export const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
 export function useAuthenticate(formData: any) {
-  const [signIn, { isLoading }] = useSigninMutation();
+  const [login, { isLoading }] = useSigninMutation();
   try {
     console.log("login.handler", formData);
-    // signIn({ email: formData.get("email") as string, password: formData.get("password") as string });
+    // login({ email: formData.get("email") as string, password: formData.get("password") as string });
   } catch (error) {
     console.log("login.handler", formData);
     if (error) {

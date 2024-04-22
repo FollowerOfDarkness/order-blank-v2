@@ -4,14 +4,18 @@ import { FaLock } from "react-icons/fa";
 import { useAuthenticate } from "../model/login.handler";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useSigninMutation } from "../api/login.api";
+import { ILoginForm } from "@/shared/types/login.form";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 // import { IFormInput, onSubmit } from "../model/login.form.handler";
 
 export const LoginForm = () => {
-  const { register, handleSubmit } = useForm();
-  const [signIn, { isLoading }] = useSigninMutation();
-  //   const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
+  const { register, handleSubmit, reset } = useForm<ILoginForm>();
+  const [isLoginForm, setIsLoginForm] = useState(false);
+  const [login, { isLoading }] = useSigninMutation();
+  const { push } = useRouter();
   const onSubmit = (data: any) => {
-    signIn(data)
+    login(data)
       .unwrap()
       .then(res => console.log(res)); // Вызов функции useauthenticate с данными формы
   };
