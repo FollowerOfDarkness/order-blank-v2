@@ -4,9 +4,12 @@ import { FaLock } from "react-icons/fa";
 import { useAuthenticate } from "../model/login.handler";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useSigninMutation } from "../api/login.api";
-import { ILoginForm } from "@/shared/types/login.form";
+// import { ILoginForm } from "@/shared/types";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ILoginForm, StatusCodesEnum } from "@/shared/types";
+import { message } from "antd";
+import Loader from "@/shared/ui/Loader";
 // import { IFormInput, onSubmit } from "../model/login.form.handler";
 
 export const LoginForm = () => {
@@ -17,8 +20,15 @@ export const LoginForm = () => {
   const onSubmit = (data: any) => {
     login(data)
       .unwrap()
-      .then(res => console.log(res)); // Вызов функции useauthenticate с данными формы
+      .then(res => {
+        console.log(res);
+        if (res.statusCode !== StatusCodesEnum.ok) {
+          message.warning("Введите правильный логин/ пароль");
+          return;
+        }
+      }); // Вызов функции useauthenticate с данными формы
   };
+  if (isLoading) return <Loader />;
   return (
     <form
       //   action={useauthenticate}
