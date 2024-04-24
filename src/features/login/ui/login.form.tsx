@@ -21,12 +21,12 @@ export const LoginForm = () => {
     login(data)
       .unwrap()
       .then(res => {
-        console.log(res);
+        console.log(">>>", res.body.accessToken);
         if (res.statusCode !== StatusCodesEnum.ok) {
           message.warning("Введите правильный логин/ пароль");
           return;
         }
-		localStorage.setItem("accessToken", res?.accessToken ? res.accessToken : "");
+        localStorage.setItem("accessToken", res?.body.accessToken ? res.body.accessToken : "");
       }); // Вызов функции useauthenticate с данными формы
   };
   if (isLoading) return <Loader />;
