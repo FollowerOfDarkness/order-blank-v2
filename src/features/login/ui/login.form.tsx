@@ -26,6 +26,7 @@ export const LoginForm = () => {
           message.warning("Введите правильный логин/ пароль");
           return;
         }
+		localStorage.setItem("accessToken", res?.accessToken ? res.accessToken : "");
       }); // Вызов функции useauthenticate с данными формы
   };
   if (isLoading) return <Loader />;
