@@ -4,3 +4,7 @@ export enum StatusCodesEnum {
   forbidden = 403,
   badRequest = 400,
 }
+export enum EnumTokens {
+	'ACCESS_TOKEN' = 'accessToken',
+	'REFRESH_TOKEN' = 'refreshToken'
+}
