@@ -1,1 +1,1 @@
-export { Loading as default } from '@/shared/ui/Loader'
+export { default } from '@/shared/ui/Loader'
