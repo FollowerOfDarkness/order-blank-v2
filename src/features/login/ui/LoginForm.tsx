@@ -9,8 +9,9 @@ import { FaUser } from 'react-icons/fa'
 import { FaLock } from 'react-icons/fa'
 
 import { useSigninMutation } from '../api/login.api'
-import { useAuthenticate } from '../model/login.handler'
 
+import { DASHBOARD_PAGES } from '@/shared/lib/pages-url.config'
+// import { useAuthenticate } from '../model/login.handler'
 import { ILoginForm, StatusCodesEnum } from '@/shared/types'
 import Loader from '@/shared/ui/Loader'
 
@@ -34,7 +35,12 @@ export const LoginForm = () => {
 					'accessToken',
 					res?.body.accessToken ? res.body.accessToken : ''
 				)
+				push(DASHBOARD_PAGES.HOME)
 			}) // Вызов функции useauthenticate с данными формы
+			.catch(e => {
+				message.error('Ошибка авторизации')
+				console.error(e)
+			})
 	}
 	if (isLoading) return <Loader />
 	return (

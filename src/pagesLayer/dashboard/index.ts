@@ -1,1 +1,1 @@
-export * from "./ui/Dashboard.page";
+export * from './ui/DashboardPage'
