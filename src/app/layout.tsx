@@ -1,16 +1,9 @@
-import type { Metadata } from "next";
-import { Inter, Open_Sans, Poppins } from "next/font/google";
-import { Provider } from 'react-redux';
+import type { Metadata } from 'next'
 
-
-
-// import { store } from "./model/store";
-import StoreProvider from './StoreProvider';
-import './styles/globals.scss';
-import { inter } from '@/shared/fonts/fonts';
-import { SITE_NAME } from '@/shared/lib/seo.constants';
-
-
+import StoreProvider from './StoreProvider'
+import './styles/globals.scss'
+import { inter } from '@/shared/fonts/fonts'
+import { SITE_NAME } from '@/shared/lib/seo.constants'
 
 export const metadata: Metadata = {
 	title: {

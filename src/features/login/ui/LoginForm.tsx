@@ -1,19 +1,24 @@
-'use client'
+'use client';
 
-import { message } from 'antd'
-import { useRouter } from 'next/navigation'
+import { message } from 'antd';
+import { useRouter } from 'next/navigation';
 // import { ILoginForm } from "@/shared/types";
-import { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { FaUser } from 'react-icons/fa'
-import { FaLock } from 'react-icons/fa'
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { FaUser } from 'react-icons/fa';
+import { FaLock } from 'react-icons/fa';
 
-import { useSigninMutation } from '../api/login.api'
 
-import { DASHBOARD_PAGES } from '@/shared/lib/pages-url.config'
+
+import { useSigninMutation } from '../api/login.api';
+
+
+
+import { DASHBOARD_PAGES } from '@/shared/lib/pages-url.config';
 // import { useAuthenticate } from '../model/login.handler'
 import { ILoginForm, StatusCodesEnum } from '@/shared/types'
-import Loader from '@/shared/ui/Loader'
+import { Loader } from '@/shared/ui'
+
 
 // import { IFormInput, onSubmit } from "../model/login.form.handler";
 
